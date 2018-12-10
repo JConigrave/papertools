@@ -65,3 +65,17 @@ runif_change = function(code = NULL, #the code to be run
     }
   }
 }
+
+#' to_c
+#'
+#' Takes in a charcater vector, and creates an concatenate command to build it.
+#' @param x a character vector
+#' @export to_c
+
+
+to_c = function(x){
+  x = paste0("'",x, "'")
+  x = paste0(x,collapse = ",")
+  x = paste0("c(",x,")")
+  message(x)
+}
