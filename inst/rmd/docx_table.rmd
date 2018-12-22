@@ -1,0 +1,10 @@
+---
+output: 
+  word_document:
+    reference_docx: docx-style.docx
+---
+
+```{r echo=FALSE}
+  knitr::kable(table)
+```
+

@@ -52,3 +52,25 @@ q_alpha = function(x, round = 2){
   x = psych::alpha(x)$total$std.alpha
     return(round(x, round))
 }
+
+#' q_alpha
+#'
+#' Calculates and rounds alphas
+#' @param x a dataframe
+#' @param round a numeric. Result will be rounded to this number.
+#' @export q_alpha
+#' @importFrom psych alpha
+
+q_alpha = function(x, round = 2){
+  x = psych::alpha(x)$total$std.alpha
+  return(round(x, round))
+}
+
+#' digits
+#'
+#' Allows the user to specify the exact number of digits
+#' @param x a numeric
+#' @param n a numeric. The number of digits to round to.
+#' @export digits
+digits = specify_decimal <- function(x, n) trimws(format(round(x, n), nsmall=n))
+
