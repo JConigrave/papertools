@@ -13,4 +13,5 @@ Imports:
     english (>= 1.1-4),
     psych (>= 1.8.10),
     knitr (>= 1.21),
-    rmarkdown (>= 1.11)
+    rmarkdown (>= 1.11),
+    dplyr (>= 0.7.8)
