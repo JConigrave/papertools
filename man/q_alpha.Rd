@@ -5,20 +5,12 @@
 \title{q_alpha}
 \usage{
 q_alpha(x, round = 2)
-
-q_alpha(x, round = 2)
 }
 \arguments{
 \item{x}{a dataframe}
 
 \item{round}{a numeric. Result will be rounded to this number.}
-
-\item{x}{a dataframe}
-
-\item{round}{a numeric. Result will be rounded to this number.}
 }
 \description{
-Calculates and rounds alphas
-
 Calculates and rounds alphas
 }

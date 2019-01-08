@@ -50,19 +50,6 @@ logit2prob <- function(logit){
 
 q_alpha = function(x, round = 2){
   x = psych::alpha(x)$total$std.alpha
-    return(round(x, round))
-}
-
-#' q_alpha
-#'
-#' Calculates and rounds alphas
-#' @param x a dataframe
-#' @param round a numeric. Result will be rounded to this number.
-#' @export q_alpha
-#' @importFrom psych alpha
-
-q_alpha = function(x, round = 2){
-  x = psych::alpha(x)$total$std.alpha
   return(round(x, round))
 }
 
