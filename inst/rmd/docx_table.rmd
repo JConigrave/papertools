@@ -4,7 +4,18 @@ output:
     reference_docx: docx-style.docx
 ---
 
-```{r echo=FALSE}
-  knitr::kable(table)
+```{r echo = FALSE, results = "asis"}
+for(i in seq_along(table)){
+  if(is.null(table_name)){
+  cat(paste0("### Table ",i,"."))
+  }else{
+  cat(paste0("### ",table_name[i]))
+  }
+  cat("\n")
+  cat("\n")
+  print(knitr::kable(data.frame(table[i])))
+  cat("\n")
+  cat("\n")
+}
 ```
 

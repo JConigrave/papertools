@@ -4,10 +4,10 @@
 \alias{to_docx}
 \title{to_docx}
 \usage{
-to_docx(table, path)
+to_docx(table, path, table_name = NULL)
 }
 \arguments{
-\item{table}{a dataframe or tibble}
+\item{table}{a dataframe or list of data.frames}
 
 \item{path}{a string. Where you want to save the file.}
 }
