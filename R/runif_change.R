@@ -72,26 +72,3 @@ runif_change = function(code = NULL, #the code to be run
 #' @param x a character vector
 #' @export to_c
 
-
-to_c = function(x){
-  x = paste0("'",x, "'")
-  x = paste0(x,collapse = ",")
-  x = paste0("c(",x,")")
-  message(x)
-}
-
-#' m_iqr
-#'
-#' takes in a numeric vector, calculates a median and iqr and returns as text.
-#' @param x a character vector
-#' @param round a numeric.
-#' @param na.rm a bool.
-#' @export m_iqr
-
-
-m_iqr = function(x,round = 1, na.rm =T){
-  median = round(median(x,na.rm=na.rm), round)
-  IQR = round(IQR(x,na.rm=na.rm),round)
-  text = paste0(median," (IQR = ",IQR,")")
-  return(text)
-}

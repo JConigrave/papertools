@@ -59,5 +59,8 @@ q_alpha = function(x, round = 2){
 #' @param x a numeric
 #' @param n a numeric. The number of digits to round to.
 #' @export digits
-digits = specify_decimal <- function(x, n) trimws(format(round(x, n), nsmall=n))
+digits = specify_decimal <- function(x, n){
+  x = round(x,n)
+  trimws(format(round(x, n), nsmall=n))
+}
 
