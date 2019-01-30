@@ -15,4 +15,5 @@ Imports:
     knitr (>= 1.21),
     rmarkdown (>= 1.11),
     dplyr (>= 0.7.8),
-    DT (>= 0.5)
+    DT (>= 0.5),
+    magrittr (>= 1.5)

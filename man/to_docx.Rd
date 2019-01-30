@@ -10,6 +10,8 @@ to_docx(table, path, table_name = NULL)
 \item{table}{a dataframe or list of data.frames}
 
 \item{path}{a string. Where you want to save the file.}
+
+\item{table_name}{string. If provided, allows tables to be named}
 }
 \description{
 Sends a data.frame to a word doc.

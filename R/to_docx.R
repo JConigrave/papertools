@@ -6,11 +6,14 @@ file.opened <- function(path) {
   }, silent = T)))
 }
 
+globalVariables(c("Author","Title","Extra","Notes","Type","Year"))
+
 #'to_docx
 #'
 #'Sends a data.frame to a word doc.
 #'@param table a dataframe or list of data.frames
 #'@param path a string. Where you want to save the file.
+#'@param table_name string. If provided, allows tables to be named
 #'@export to_docx
 
 
@@ -52,7 +55,8 @@ if(!"list" %in% class(table)){
 #'@param title a string. Defaults to "Zotero notes"
 #'@param date a string. Defaults to current date
 #'@importFrom magrittr %>%
-#'@importFrom dplyr select mutate arrange
+#'@importFrom dplyr select mutate arrange desc
+#'@importFrom utils read.csv
 #'@export zotero_notes
 
 zotero_notes = function(csv, path, title = "Zotero notes", date = format(Sys.time(), '%d %B, %Y')){
