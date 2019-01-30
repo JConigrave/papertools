@@ -14,4 +14,5 @@ Imports:
     psych (>= 1.8.10),
     knitr (>= 1.21),
     rmarkdown (>= 1.11),
-    dplyr (>= 0.7.8)
+    dplyr (>= 0.7.8),
+    DT (>= 0.5)
