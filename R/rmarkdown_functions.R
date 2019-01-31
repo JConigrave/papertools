@@ -58,7 +58,7 @@ if(!"list" %in% class(table)){
 #'@importFrom dplyr select mutate arrange desc
 #'@importFrom utils read.csv
 #'@export zotero_notes
-
+#csv = "C:/Users/jcon4884/Dropbox (Sydney Uni)/2_Grog Survey App - 1087192/10_reporting_publicity/papers/paper_5 - patterns of drinking meta analysis_James/7_paper/Literature review/Exported Items.csv"
 zotero_notes = function(csv, path, title = "Zotero notes", date = format(Sys.time(), '%d %B, %Y')){
   x = read.csv(csv)
   x$Author = gsub(",.*",", et al.",x$Author)
@@ -77,7 +77,8 @@ zotero_notes = function(csv, path, title = "Zotero notes", date = format(Sys.tim
   }
 
   rmarkdownpath = system.file("rmd", "zotero_notes.Rmd", package = "papertools")
-
+x$Title = as.character(x$Title)
+x$Publication.Title = as.character(x$Publication.Title)
   final_table = x %>%
     dplyr::select(
       Author,

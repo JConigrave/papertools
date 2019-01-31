@@ -24,5 +24,6 @@ knitr::opts_chunk$set(echo = F)
       pageLength = 10
     ),
     rownames = F
-  )
+  ) %>% 
+  DT::formatStyle(columns = seq_len(length(colnames(final_table))), fontSize = "95%")
 ```
