@@ -5,6 +5,12 @@ output:
 ---
 
 ```{r echo = FALSE, results = "asis"}
+
+if(class(table) != "list"){
+  table = list(table)
+}
+
+table_name = NULL
 for(i in seq_along(table)){
   if(is.null(table_name)){
   cat(paste0("### Table ",i,"."))
@@ -13,7 +19,7 @@ for(i in seq_along(table)){
   }
   cat("\n")
   cat("\n")
-  print(knitr::kable(data.frame(table[i])))
+  cat(knitr::kable((table[i])))
   cat("\n")
   cat("\n")
 }
