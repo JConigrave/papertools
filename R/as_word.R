@@ -59,8 +59,26 @@ q_alpha = function(x, round = 2){
 #' @param x a numeric
 #' @param n a numeric. The number of digits to round to.
 #' @export digits
-digits = specify_decimal <- function(x, n){
+digits = function(x, n = 2){
   x = round(x,n)
   trimws(format(round(x, n), nsmall=n))
 }
+
+#' round p
+#'
+#' Rounds p value to specified digits and uses less symbol if result it zero.
+#' @param p a p value
+#' @param n a numeric. The number of digits to round to.
+#' @export round_p
+round_p =  function(p, n = 2){
+  rounded = digits(p,n)
+  if(as.numeric(rounded) == 0){
+    rounded = strsplit(rounded,split="")[[1]]
+    rounded[length(rounded)] = 1
+    rounded = paste(rounded,collapse = "")
+    rounded = paste0("< ",rounded)
+  }
+  return(rounded)
+}
+
 

@@ -1,7 +1,7 @@
 Package: papertools
 Type: Package
 Title: Useful Tools For Writing Papers in Rmarkdown
-Version: 0.2.0
+Version: 0.4
 Author: James Conigrave
 Maintainer: James Conigrave <jamesconigrave@gmail.com>
 Description: These tools will help cache computationally expensive analysis, and will aid converting inline analyses into english. Please be aware that runif_change puts objects in the global envrionemnt, and modifies files on your computer.
@@ -16,4 +16,5 @@ Imports:
     rmarkdown (>= 1.11),
     dplyr (>= 0.7.8),
     DT (>= 0.5),
-    magrittr (>= 1.5)
+    magrittr (>= 1.5),
+    ggplot2 (>= 3.1.0)
