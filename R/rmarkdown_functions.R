@@ -8,6 +8,23 @@ file.opened <- function(path) {
 
 globalVariables(c("Author","Title","Extra","Notes","Type","Year"))
 
+#'clean_docx
+#'
+#'Removes random tags and a mark
+#'@param docx_path a character vector
+#'@importFrom dplyr %>%
+#'@importFrom officer read_docx body_replace_all_text
+#'@importFrom utils capture.output
+
+clean_docx = function(docx_path){
+x = officer::read_docx(docx_path)
+x = x %>%
+  officer::body_replace_all_text("\\(#tab:destroythistag\\)","") %>%
+  officer::body_replace_all_text("\\`","") %>%
+  print(docx_path) %>%
+  capture.output()
+}
+
 #'to_docx
 #'
 #'Sends a data.frame to a word doc.
@@ -46,6 +63,7 @@ if(!"list" %in% class(table)){
                     output_file = file_name,
                     output_dir = dir_name,
                     quiet = T)
+  clean_docx(paste0(dir_name, "/", file_name))
   message(paste0("saved to: '", dir_name, "/", file_name, "'"))
 }
 

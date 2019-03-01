@@ -18,6 +18,7 @@ Imports:
     DT (>= 0.5),
     magrittr (>= 1.5),
     ggplot2 (>= 3.1.0),
-    papaja (>= 0.1.0.9842)
-Remotes:  
+    papaja (>= 0.1.0.9842),
+    officer
+Remotes: 
     crsh/papaja

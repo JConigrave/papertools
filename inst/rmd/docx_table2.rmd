@@ -1,11 +1,10 @@
 ---
   output:
     word_document:
-      reference_docx: docx-style.docx
+      reference_docx: apa6_man.docx
 ---
 
-
-```{r t, echo = FALSE, results = "asis"}
+```{r destroythistag, echo = FALSE, results = "asis"}
 if(class(table) != "list"){
   table = list(table)
 }
@@ -22,9 +21,9 @@ for(i in seq_along(table)){
   cat("\n\n")
   cat("\n\n")
 
-  if("indent" %in% names(table[[i]])){
-    stub_indents = list(table[[i]]$indent)
-    table[[i]]$indent = NULL
+  if("indent_" %in% names(table[[i]])){
+    stub_indents = list(table[[i]]$indent_)
+    table[[i]]$indent_ = NULL
   } else{
     stub_indents = NULL
   }
