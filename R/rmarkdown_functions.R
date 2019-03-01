@@ -14,10 +14,12 @@ globalVariables(c("Author","Title","Extra","Notes","Type","Year"))
 #'@param table a dataframe or list of data.frames
 #'@param path a string. Where you want to save the file.
 #'@param table_name string. If provided, allows tables to be named
+#'@param table_note a string. Allows for notes
+#'@importFrom papaja apa_table
 #'@export to_docx
 
 
-to_docx = function(table, path, table_name = NULL) {
+to_docx = function(table, path, table_name = NULL, table_note = NULL) {
   file_name = basename(path)
   dir_name = dirname(path)
   file_path = paste0(dir_name, "/", file_name)
@@ -39,7 +41,7 @@ if(!"list" %in% class(table)){
     }
   }
 
-  rmarkdownpath = system.file("rmd", "docx_table.Rmd", package = "papertools")
+  rmarkdownpath = system.file("rmd", "docx_table2.Rmd", package = "papertools")
   rmarkdown::render(rmarkdownpath,
                     output_file = file_name,
                     output_dir = dir_name,

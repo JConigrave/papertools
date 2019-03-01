@@ -1,0 +1,42 @@
+---
+  output:
+    word_document:
+      reference_docx: docx-style.docx
+---
+
+
+```{r t, echo = FALSE, results = "asis"}
+if(class(table) != "list"){
+  table = list(table)
+}
+
+if(is.null(table_name)){
+  table_name = paste("Table",seq_along(table))
+}
+
+if(is.null(table_note)){
+  table_note = rep(" ",length(table))
+}
+
+for(i in seq_along(table)){
+  cat("\n\n")
+  cat("\n\n")
+
+  if("indent" %in% names(table[[i]])){
+    stub_indents = list(table[[i]]$indent)
+    table[[i]]$indent = NULL
+  } else{
+    stub_indents = NULL
+  }
+    
+  
+  cat(papaja::apa_table(table[i], caption = table_name[i],stub_indents = stub_indents , note = table_note[i], escape = F))
+
+  #cat(knitr::kable((table[i])))
+  cat("\n\n")
+  cat("\n\n")
+}
+```
+
+`
+

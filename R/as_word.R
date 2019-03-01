@@ -76,6 +76,8 @@ round_p =  function(p, n = 2){
     rounded = strsplit(rounded,split="")[[1]]
     rounded[length(rounded)] = 1
     rounded = paste(rounded,collapse = "")
+  }
+  if(p < as.numeric(rounded)){
     rounded = paste0("< ",rounded)
   }
   return(rounded)
