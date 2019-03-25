@@ -83,4 +83,50 @@ round_p =  function(p, n = 2){
   return(rounded)
 }
 
+#' multi_grepl_n
+#'
+#' Returns the number of times grepl matched a pattern; vectorised.
+#' @param pattern vector of character string patterns
+#' @param x a vector of strings to match with patterns
+#' @param tolower a bool. Indicates whether or not to make each pattern and input vector lowercase
+#' @return A vector containing the number of times each pattern was matched
+#' @importFrom dplyr %>%
+#' @export multi_grepl_n
 
+
+multi_grepl_n = function(pattern, x, tolower = T) {
+  if (tolower) {
+    pattern = tolower(pattern)
+    x = tolower(x)
+  }
+  out = lapply(pattern, function(p) {
+    sum(grepl(p, x))
+  }) %>% unlist
+  return(out)
+}
+
+#' n_percent
+#'
+#' Returns the number than meet a condition, and the percentage in brackets
+#' @param vector a vector to count within
+#' @param x character, the object to count by
+#' @param round scalar, the number of digits
+#' @param na.rm bool, whether to remove NAs
+#' @importFrom dplyr %>%
+#' @return a character
+#' @export n_percent
+
+n_percent = function(vector, x, round = 2, na.rm=T){
+
+  if(na.rm){
+    vector = na.omit(vector)
+  }
+
+  n = vector[which(vector == x)] %>%
+    length
+  total_length = length(vector)
+  percent = (n / total_length) %>%
+    digits(round)
+  out = glue_bracket(as.character(n),percent, brackets = c("(","%)"))
+
+}

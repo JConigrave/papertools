@@ -4,7 +4,8 @@
 \alias{glue_bracket}
 \title{glue_bracket}
 \usage{
-glue_bracket(x, ..., round = 2)
+glue_bracket(x, ..., round = NULL, brackets = c("(", ")"),
+  collapse = ", ")
 }
 \arguments{
 \item{x}{a character or numeric}
@@ -12,6 +13,10 @@ glue_bracket(x, ..., round = 2)
 \item{...}{a function. If provided will transform effects and confidence intervals.}
 
 \item{round}{a scalar.}
+
+\item{brackets}{a vector with character strings to replace left and right brackets.}
+
+\item{collapse}{a string. separator for numbers within brackets}
 }
 \description{
 glue_bracket

@@ -4,15 +4,27 @@
 #' @param x a character or numeric
 #' @param ... a function. If provided will transform effects and confidence intervals.
 #' @param round a scalar.
+#' @param brackets a vector with character strings to replace left and right brackets.
+#' @param collapse a string. separator for numbers within brackets
 #' @importFrom dplyr %>%
 #' @export glue_bracket
 
-glue_bracket = function(x, ..., round = 2) {
-  others = list(...) %>% data.frame
+glue_bracket = function(x, ..., round = NULL, brackets = c("(",")"), collapse = ", ") {
+  # warnings and errors -----------------------------------
+  if(length(brackets)!=2) stop("brackets must be length 2")
 
-  bracks = lapply(seq_along(others[, 1]), function(x)
-    paste(digits(as.numeric(others[x, ]), round), collapse = ", ")) %>% unlist
-  out = paste0(digits(as.numeric(x), round), " (", bracks, ")")
+  # grab extra numbers ------------------------------------
+  others = list(...) %>% unlist
+
+  # round if requested ------------------------------------
+  if(!is.null(round)){
+    x = digits(as.numeric(x),round)
+    others = digits(as.numeric(others),round)
+  }
+
+  bracks = paste(others, collapse = collapse)
+
+  out = paste0(x, " ",brackets[1],bracks, brackets[2])
   return(out)
 }
 
