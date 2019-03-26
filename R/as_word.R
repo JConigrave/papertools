@@ -126,7 +126,8 @@ n_percent = function(vector, x, round = 2, na.rm=T){
     length
   total_length = length(vector)
   percent = (n / total_length) %>%
+    "*"(100) %>%
     digits(round)
   out = glue_bracket(as.character(n),percent, brackets = c("(","%)"))
-
+  return(out)
 }
