@@ -79,3 +79,50 @@ m_iqr = function(x,round = 1,quantiles = F,na.rm =T, in.brack = F){
 
   return(text)
 }
+
+#' round p
+#'
+#' Rounds p value to specified digits and uses less symbol if result it zero.
+#' @param p a p value, or vector of p-values
+#' @param n a numeric. The number of digits to round to.
+#' @param stars a numeric vector, add a star every time p is less than a respective star
+#' @export round_p
+round_p =  function(p, n = 2, stars = c(0.05)){
+  rounded = digits(p,n)
+  lapply(seq_along(rounded), function(x){
+    #message(x)
+    original = p[x]
+    r_original = rounded[x]
+    r = rounded[x]
+
+    if(as.numeric(r) == 0){
+      r = strsplit(r,split="")[[1]]
+      r[length(r)] = 1
+      r = paste(r,collapse = "")
+    }
+
+    #  add stars --------------
+    stars_to_add = c()
+    if(!is.null(stars)){
+     stars_to_add = lapply(stars,function(s){
+       if(as.numeric(original) < s){
+         return("*")
+       }else{
+         return(NA)
+       }
+      }) %>% unlist %>%
+       na.omit %>%
+       paste(collapse = "")
+
+    }
+
+    if(r_original < as.numeric(r)){
+      r = paste0("< ",r)
+    }
+
+    r = paste0(r,stars_to_add)
+
+    return(r)
+  }) %>% unlist
+
+}
