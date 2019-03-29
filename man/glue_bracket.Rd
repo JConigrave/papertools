@@ -4,7 +4,7 @@
 \alias{glue_bracket}
 \title{glue_bracket}
 \usage{
-glue_bracket(x, ..., round = NULL, brackets = c("(", ")"),
+glue_bracket(x, ..., round = 2, brackets = c("(", ")"),
   collapse = ", ")
 }
 \arguments{

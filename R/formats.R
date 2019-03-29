@@ -9,7 +9,7 @@
 #' @importFrom dplyr %>%
 #' @export glue_bracket
 
-glue_bracket = function(x, ..., round = NULL, brackets = c("(",")"), collapse = ", ") {
+glue_bracket = function(x, ..., round = 2, brackets = c("(",")"), collapse = ", ") {
   # warnings and errors -----------------------------------
   if(length(brackets)!=2) stop("brackets must be length 2")
 
