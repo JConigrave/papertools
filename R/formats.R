@@ -90,6 +90,8 @@ m_iqr = function(x,round = 1,quantiles = F,na.rm =T, in.brack = F){
 round_p =  function(p, n = 2, stars = c()){
   rounded = digits(p,n)
   lapply(seq_along(rounded), function(x){
+
+    if(!is.na(rounded[x])){
     #message(x)
     original = p[x]
     r_original = rounded[x]
@@ -123,6 +125,10 @@ round_p =  function(p, n = 2, stars = c()){
     r = paste0(r,stars_to_add)
 
     return(r)
+
+    }else{
+      NA
+    }
   }) %>% unlist
 
 }
