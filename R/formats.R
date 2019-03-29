@@ -87,7 +87,7 @@ m_iqr = function(x,round = 1,quantiles = F,na.rm =T, in.brack = F){
 #' @param n a numeric. The number of digits to round to.
 #' @param stars a numeric vector, add a star every time p is less than a respective star
 #' @export round_p
-round_p =  function(p, n = 2, stars = c(0.05)){
+round_p =  function(p, n = 2, stars = c()){
   rounded = digits(p,n)
   lapply(seq_along(rounded), function(x){
     #message(x)

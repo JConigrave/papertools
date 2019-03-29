@@ -4,7 +4,7 @@
 \alias{round_p}
 \title{round p}
 \usage{
-round_p(p, n = 2, stars = c(0.05))
+round_p(p, n = 2, stars = c())
 }
 \arguments{
 \item{p}{a p value, or vector of p-values}
