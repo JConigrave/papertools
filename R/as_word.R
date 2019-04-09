@@ -104,6 +104,7 @@ multi_grepl_n = function(pattern, x, tolower = T) {
 #' @param round scalar, the number of digits
 #' @param na.rm bool, whether to remove NAs
 #' @importFrom dplyr %>%
+#' @importFrom stats na.omit
 #' @return a character
 #' @export n_percent
 
@@ -121,4 +122,26 @@ n_percent = function(vector, x, round = 2, na.rm=T){
     digits(round)
   out = glue_bracket(as.character(n),percent, brackets = c("(","%)"))
   return(out)
+}
+
+#' hash_replace
+#'
+#' Finds are replaces hash codes, replaces with objects of the same name
+#' @param string text to search in
+#' @param sample default NULL. If provided, samples a vector
+#' @param envir the environment to call replacements from. Defaults to parent frame
+#' @export hash_replace
+
+hash_replace = function(string,sample = NULL, envir = parent.frame()){
+  while(grepl(".*##(.+)##.*",string)){
+    hash = gsub(".*##(.+)##.*", "\\1", string)
+    replace = eval(parse(text = hash), envir = envir)
+
+    if(!is.null(sample)) {
+      replace = sample(replace, sample)
+    }
+
+    string = gsub(paste0("##",hash,"##"),replace,string)
+  }
+  return(string)
 }
