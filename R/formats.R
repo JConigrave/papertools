@@ -1,3 +1,19 @@
+#' digits
+#'
+#' Allows the user to specify the exact number of digits
+#' @param x a numeric
+#' @param n a numeric. The number of digits to round to.
+#' @export digits
+
+digits = function(x, n = 2) {
+  x = round(x, n)
+  x[] = sapply(x, function(i) {
+         ifelse(!is.na(i), trimws(format(round(as.numeric(as.character(i)), n), nsmall = n)),NA)
+      })
+  return(x)
+}
+
+
 
 #' glue_bracket
 #'
@@ -14,17 +30,21 @@ glue_bracket = function(x, ..., round = 2, brackets = c("(",")"), collapse = ", 
   if(length(brackets)!=2) stop("brackets must be length 2")
 
   # grab extra numbers ------------------------------------
-  others = list(...) %>% unlist
+  others = list(...) %>%
+    do.call(cbind,.)
 
   # round if requested ------------------------------------
   if(!is.null(round)){
-    x = digits(as.numeric(x),round)
-    others = digits(as.numeric(others),round)
+    x = digits(x,round)
+    others = digits(others, round)
   }
 
-  bracks = paste(others, collapse = collapse)
+  if(!is.null(dim(others))){
+  bracks = apply(others,1, function(x) paste(x, collapse = collapse))
+  }
 
-  out = paste0(x, " ",brackets[1],bracks, brackets[2])
+  out = lapply(seq_along(bracks), function(i) paste0(x[[i]], " ", brackets[1],bracks[[i]], brackets[2])) %>%
+    unlist
   return(out)
 }
 

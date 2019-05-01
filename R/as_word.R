@@ -53,26 +53,6 @@ q_alpha = function(x, round = 2){
   return(round(x, round))
 }
 
-#' digits
-#'
-#' Allows the user to specify the exact number of digits
-#' @param x a numeric
-#' @param n a numeric. The number of digits to round to.
-#' @export digits
-digits = function(x, n = 2) {
-  x = round(x, n)
-  out = lapply(x, function(i) {
-    if (!is.na(i)) {
-      trimws(format(round(i, n), nsmall = n))
-    } else{
-      NA
-    }
-
-  }) %>% unlist
-  out
-}
-
-
 
 #' multi_grepl_n
 #'
