@@ -2,20 +2,33 @@
 #'
 #' Takes a numeral and converts to a word with optional sentence case. Based off the English package.
 #' @param x a numeric. Number to convert to english
-#' @param sentencecase a character vector. The names to be saved and loaded
+#' @param sentencecase a Bool. If true, the first letter is capitalised
+#' @param hyphenate a Bool. If true, compound numbers are hyphenated
+#' @importFrom dplyr %>%
 #' @export as_word
 #' @importFrom english english
 
 as_word = function(x = NULL,
-                   sentencecase = T) {
-  x = as.character(
-    english::english(
-      as.numeric
-      (x)))
-
-  if(sentencecase==T){
-    substr(x,1,1) <- toupper(substr(x,1,1))
+                   sentencecase = F,
+                   hyphenate = T) {
+  x = as.character(english::english(as.numeric
+                                    (x)))
+  if (sentencecase == T) {
+    substr(x, 1, 1) <- toupper(substr(x, 1, 1))
   }
+
+  if (hyphenate) {
+    compounds = english::english(1:9) %>%
+      paste("y", .)
+    compounds_hyphen = english::english(1:9) %>%
+      paste("y", ., sep = "-")
+
+    for (n in seq_along(compounds)) {
+      x <- gsub(compounds[n], compounds_hyphen[n], x)
+    }
+
+  }
+
   return(x)
 }
 
@@ -88,7 +101,7 @@ multi_grepl_n = function(pattern, x, tolower = T) {
 #' @return a character
 #' @export n_percent
 
-n_percent = function(vector, x, round = 2, na.rm=T){
+n_percent = function(vector, x, round = 2, na.rm=F){
 
   if(na.rm){
     vector = na.omit(vector)
@@ -100,7 +113,7 @@ n_percent = function(vector, x, round = 2, na.rm=T){
   percent = (n / total_length) %>%
     "*"(100) %>%
     digits(round)
-  out = glue_bracket(as.character(n),percent, brackets = c("(","%)"))
+  out = glue_bracket(as.character(n),percent, brackets = c("(","%)"), round = NULL)
   return(out)
 }
 
