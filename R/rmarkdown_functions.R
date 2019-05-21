@@ -120,5 +120,15 @@ x$Publication.Title = as.character(x$Publication.Title)
 
 }
 
+replace_papaja_docx_template = function(){
+  papertools_apa6 = system.file("rmd", "apa6_man.docx", package = "papertools")
+  papaja_apa6 = system.file("rmarkdown/templates/apa6/resources", "apa6_man.docx", package = "papaja")
+  if(papaja_apa6 == ""){
+    stop("The files could not be located. Is papaja installed?")
+  }
 
+  unlink(papaja_apa6)
+  file.copy(papertools_apa6, papaja_apa6)
+  return(message("file assasinated."))
+}
 

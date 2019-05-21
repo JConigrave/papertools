@@ -4,12 +4,14 @@
 \alias{as_word}
 \title{as_word}
 \usage{
-as_word(x = NULL, sentencecase = T)
+as_word(x = NULL, sentencecase = F, hyphenate = T)
 }
 \arguments{
 \item{x}{a numeric. Number to convert to english}
 
-\item{sentencecase}{a character vector. The names to be saved and loaded}
+\item{sentencecase}{a Bool. If true, the first letter is capitalised}
+
+\item{hyphenate}{a Bool. If true, compound numbers are hyphenated}
 }
 \description{
 Takes a numeral and converts to a word with optional sentence case. Based off the English package.

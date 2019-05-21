@@ -4,7 +4,7 @@
 \alias{n_percent}
 \title{n_percent}
 \usage{
-n_percent(vector, x, round = 2, na.rm = T)
+n_percent(vector, x, round = 2, na.rm = F)
 }
 \arguments{
 \item{vector}{a vector to count within}
