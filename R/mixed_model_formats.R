@@ -13,7 +13,6 @@
 #' @importFrom papaja apa_table
 #' @importFrom tibble rownames_to_column
 #' @importFrom purrr modify_if
-#' @importFrom sjstats re_var icc
 
 mm_table_binomial = function(model, round = 2, round_p = 3, fixed_names = NULL, simple_names = F, collapse = " - ", brackets = c("(",")")) {
 
