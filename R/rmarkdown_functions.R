@@ -30,13 +30,14 @@ x = x %>%
 #'Sends a data.frame to a word doc.
 #'@param table a dataframe or list of data.frames
 #'@param path a string. Where you want to save the file.
-#'@param table_name string. If provided, allows tables to be named
-#'@param table_note a string. Allows for notes
+#'@param title string. If provided, allows tables to be named
+#'@param note a string. Allows for notes
+#'@param landscape a bool. If true, outputs a landscape word doc.
 #'@importFrom papaja apa_table
 #'@export to_docx
 
 
-to_docx = function(table, path, table_name = NULL, table_note = NULL) {
+to_docx = function(table, path, title = NULL, note = NULL, landscape = F) {
   file_name = basename(path)
   dir_name = dirname(path)
   file_path = paste0(dir_name, "/", file_name)
@@ -48,21 +49,32 @@ to_docx = function(table, path, table_name = NULL, table_note = NULL) {
     stop("Target file is currently open, cannot write.")
   }
 
-if(!"list" %in% class(table)){
-  table = list(table)
-}
+  if (!"list" %in% class(table)) {
+    table = list(table)
+  }
 
-  if(!is.null(table_name)){
-    if(length(table_name) != length(table)){
-      stop("'table_name' is not the same length as 'table'. If names are provided, they must be provided for each object.")
+  if (!is.null(title)) {
+    if (length(title) != length(table)) {
+      stop(
+        "'title' is not the same length as 'table'. If titles are provided, they must be provided for each object."
+      )
     }
   }
 
-  rmarkdownpath = system.file("rmd", "docx_table2.Rmd", package = "papertools")
-  rmarkdown::render(rmarkdownpath,
-                    output_file = file_name,
-                    output_dir = dir_name,
-                    quiet = T)
+  if (landscape) {
+    rmarkdownpath = system.file("rmd", "docx_table_landscape.Rmd", package = "papertools")
+
+  } else{
+    rmarkdownpath = system.file("rmd", "docx_table_portrait.Rmd", package = "papertools")
+
+  }
+
+  rmarkdown::render(
+    rmarkdownpath,
+    output_file = file_name,
+    output_dir = dir_name,
+    quiet = T
+  )
   clean_docx(paste0(dir_name, "/", file_name))
   message(paste0("saved to: '", dir_name, "/", file_name, "'"))
 }
