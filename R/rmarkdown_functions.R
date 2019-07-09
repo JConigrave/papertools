@@ -32,12 +32,18 @@ x = x %>%
 #'@param path a string. Where you want to save the file.
 #'@param title string. If provided, allows tables to be named
 #'@param note a string. Allows for notes
-#'@param landscape a bool. If true, outputs a landscape word doc.
+#'@param landscape a bool. If true, outputs a landscape word doc
+#'@param save_over a bool. If true, to_docx will save over files with same path
 #'@importFrom papaja apa_table
 #'@export to_docx
 
 
-to_docx = function(table, path, title = NULL, note = NULL, landscape = F) {
+to_docx = function(table, path, title = NULL, note = NULL, landscape = F, save_over = F) {
+
+  if(!save_over){
+    path = prevent_duplicates(path)
+  }
+
   file_name = basename(path)
   if(tools::file_ext(file_name) != "docx"){
   #if path isn't to .docx, it is now.
@@ -147,5 +153,30 @@ replace_papaja_docx_template = function(){
   unlink(papaja_apa6)
   file.copy(papertools_apa6, papaja_apa6)
   return(message("file assasinated."))
+}
+
+
+#'prevent_duplicates
+#'
+#'Stops users accidentally overriding important files
+#'@param path
+
+prevent_duplicates = function(path){
+  folder = dirname(path)
+  filename = basename(path) %>%
+    tools::file_path_sans_ext() #isolate file name (remove full path)
+  ext = tools::file_ext(path)
+
+  while(paste(filename,ext,sep = ".") %in% list.files(folder)){ #while the folder contains a file with the same name
+    if(!grepl("\\(\\d\\)",filename)){ #if there's not brackets with a name inside
+      filename = paste0(filename,"(1)") #add brackets with the number 1 in side
+    }else{
+      pod = stringr::str_extract(filename, "\\(\\d\\)") #otherwise grab the brackets
+      num = as.numeric(gsub("\\D","", pod))+1 #get the number out and add 1 to it
+      filename = gsub("\\(\\d\\)","",filename) #remove the old brackets with numbers in it
+      filename = paste0(filename,"(",num,")") #add the new brackets with higher number in it
+    }
+  }
+  return(paste0(folder,"/",filename,".",ext)) #return the filename with the folder address pasted to it.
 }
 
