@@ -4,16 +4,18 @@
 \alias{to_docx}
 \title{to_docx}
 \usage{
-to_docx(table, path, table_name = NULL, table_note = NULL)
+to_docx(table, path, title = NULL, note = NULL, landscape = F)
 }
 \arguments{
 \item{table}{a dataframe or list of data.frames}
 
 \item{path}{a string. Where you want to save the file.}
 
-\item{table_name}{string. If provided, allows tables to be named}
+\item{title}{string. If provided, allows tables to be named}
 
-\item{table_note}{a string. Allows for notes}
+\item{note}{a string. Allows for notes}
+
+\item{landscape}{a bool. If true, outputs a landscape word doc.}
 }
 \description{
 Sends a data.frame to a word doc.
