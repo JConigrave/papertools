@@ -40,15 +40,19 @@ x = x %>%
 
 to_docx = function(table, path, title = NULL, note = NULL, landscape = F, save_over = F) {
 
+  if(tools::file_ext(path) != "docx"){
+    #if path isn't to .docx, it is now.
+    path <- paste0(path,".docx")
+  }
+
   if(!save_over){
     path = prevent_duplicates(path)
   }
 
+
+
+
   file_name = basename(path)
-  if(tools::file_ext(file_name) != "docx"){
-  #if path isn't to .docx, it is now.
-    file_name <- paste0(file_name,".docx")
-  }
 
   dir_name = dirname(path)
   file_path = paste0(dir_name, "/", file_name)
