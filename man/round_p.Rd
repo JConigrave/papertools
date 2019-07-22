@@ -4,7 +4,7 @@
 \alias{round_p}
 \title{round p}
 \usage{
-round_p(p, n = 2, stars = c())
+round_p(p, n = 2, stars = c(), leading.zero = T)
 }
 \arguments{
 \item{p}{a p value, or vector of p-values}
@@ -12,6 +12,8 @@ round_p(p, n = 2, stars = c())
 \item{n}{a numeric. The number of digits to round to.}
 
 \item{stars}{a numeric vector, add a star every time p is less than a respective star}
+
+\item{leading.zero}{a bool. If FALSE, leading zeros will be removed}
 }
 \description{
 Rounds p value to specified digits and uses less symbol if result it zero.

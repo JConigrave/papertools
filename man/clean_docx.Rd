@@ -4,10 +4,12 @@
 \alias{clean_docx}
 \title{clean_docx}
 \usage{
-clean_docx(docx_path)
+clean_docx(docx_path, landscape = F)
 }
 \arguments{
 \item{docx_path}{a character vector}
+
+\item{landscape}{a bool. If true, document will become landscape}
 }
 \description{
 Removes random tags and a mark

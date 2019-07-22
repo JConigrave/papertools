@@ -12,16 +12,21 @@ globalVariables(c("Author","Title","Extra","Notes","Type","Year"))
 #'
 #'Removes random tags and a mark
 #'@param docx_path a character vector
+#'@param landscape a bool. If true, document will become landscape
 #'@importFrom dplyr %>%
 #'@importFrom officer read_docx body_replace_all_text
 #'@importFrom utils capture.output
 
-clean_docx = function(docx_path){
+clean_docx = function(docx_path, landscape = F){
 x = officer::read_docx(docx_path)
 x = x %>%
   officer::body_replace_all_text("\\(#tab:destroythistag\\)","") %>%
-  officer::body_replace_all_text("\\`","") %>%
-  print(docx_path) %>%
+  officer::body_replace_all_text("\\`","")
+
+if(landscape){
+  x = officer::body_end_section_landscape(x)
+}
+  print(x, target = docx_path) %>%
   capture.output()
 }
 
@@ -38,19 +43,20 @@ x = x %>%
 #'@export to_docx
 
 
-to_docx = function(table, path, title = NULL, note = NULL, landscape = F, save_over = F) {
-
-  if(tools::file_ext(path) != "docx"){
+to_docx = function(table,
+                   path,
+                   title = NULL,
+                   note = NULL,
+                   landscape = F,
+                   save_over = F) {
+  if (tools::file_ext(path) != "docx") {
     #if path isn't to .docx, it is now.
-    path <- paste0(path,".docx")
+    path <- paste0(path, ".docx")
   }
 
-  if(!save_over){
+  if (!save_over) {
     path = prevent_duplicates(path)
   }
-
-
-
 
   file_name = basename(path)
 
@@ -76,13 +82,7 @@ to_docx = function(table, path, title = NULL, note = NULL, landscape = F, save_o
     }
   }
 
-  if (landscape) {
-    rmarkdownpath = system.file("rmd", "docx_table_landscape.Rmd", package = "papertools")
-
-  } else{
-    rmarkdownpath = system.file("rmd", "docx_table_portrait.Rmd", package = "papertools")
-
-  }
+  rmarkdownpath = system.file("rmd", "docx_table.Rmd", package = "papertools")
 
   rmarkdown::render(
     rmarkdownpath,
@@ -90,7 +90,7 @@ to_docx = function(table, path, title = NULL, note = NULL, landscape = F, save_o
     output_dir = dir_name,
     quiet = T
   )
-  clean_docx(paste0(dir_name, "/", file_name))
+  clean_docx(paste0(dir_name, "/", file_name), landscape = landscape)
   message(paste0("saved to: '", dir_name, "/", file_name, "'"))
 }
 
@@ -163,7 +163,7 @@ replace_papaja_docx_template = function(){
 #'prevent_duplicates
 #'
 #'Stops users accidentally overriding important files
-#'@param path
+#'@param path character string to path
 
 prevent_duplicates = function(path){
   folder = dirname(path)

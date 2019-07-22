@@ -106,8 +106,9 @@ m_iqr = function(x,round = 1,quantiles = F,na.rm =T, in.brack = F){
 #' @param p a p value, or vector of p-values
 #' @param n a numeric. The number of digits to round to.
 #' @param stars a numeric vector, add a star every time p is less than a respective star
+#' @param leading.zero a bool. If FALSE, leading zeros will be removed
 #' @export round_p
-round_p =  function(p, n = 2, stars = c()){
+round_p =  function(p, n = 2, stars = c(), leading.zero = T){
   rounded = digits(p,n)
   lapply(seq_along(rounded), function(x){
 
@@ -136,6 +137,11 @@ round_p =  function(p, n = 2, stars = c()){
        na.omit %>%
        paste(collapse = "")
 
+    }
+
+    if(!leading.zero){
+      r = sub("^(-)?0[.]",
+              "\\1.", r)
     }
 
     if(r_original < as.numeric(r)){

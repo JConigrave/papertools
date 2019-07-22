@@ -4,7 +4,8 @@
 \alias{to_docx}
 \title{to_docx}
 \usage{
-to_docx(table, path, title = NULL, note = NULL, landscape = F)
+to_docx(table, path, title = NULL, note = NULL, landscape = F,
+  save_over = F)
 }
 \arguments{
 \item{table}{a dataframe or list of data.frames}
@@ -15,7 +16,9 @@ to_docx(table, path, title = NULL, note = NULL, landscape = F)
 
 \item{note}{a string. Allows for notes}
 
-\item{landscape}{a bool. If true, outputs a landscape word doc.}
+\item{landscape}{a bool. If true, outputs a landscape word doc}
+
+\item{save_over}{a bool. If true, to_docx will save over files with same path}
 }
 \description{
 Sends a data.frame to a word doc.

@@ -53,6 +53,17 @@ logit2prob <- function(logit){
   return(prob)
 }
 
+#' prob2odds
+#'
+#' Converts probability to odds
+#' @param p a scalar. Probability
+#' @export prob2odds
+
+prob2odds <- function(p){
+ return(p / (1-p))
+}
+
+
 #' q_alpha
 #'
 #' Calculates and rounds alphas
