@@ -25,6 +25,7 @@ Imports:
     sjstats,
     effects,
     stringr,
-    insight
+    insight,
+    glue
 Remotes: 
     crsh/papaja

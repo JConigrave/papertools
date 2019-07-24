@@ -4,12 +4,12 @@
 \alias{as_word}
 \title{as_word}
 \usage{
-as_word(x = NULL, sentencecase = F, hyphenate = T)
+as_word(x = NULL, sentence = F, hyphenate = T)
 }
 \arguments{
 \item{x}{a numeric. Number to convert to english}
 
-\item{sentencecase}{a Bool. If true, the first letter is capitalised}
+\item{sentence}{a Bool. If true, the first letter is capitalised}
 
 \item{hyphenate}{a Bool. If true, compound numbers are hyphenated}
 }

@@ -2,18 +2,17 @@
 #'
 #' Takes a numeral and converts to a word with optional sentence case. Based off the English package.
 #' @param x a numeric. Number to convert to english
-#' @param sentencecase a Bool. If true, the first letter is capitalised
+#' @param sentence a Bool. If true, the first letter is capitalised
 #' @param hyphenate a Bool. If true, compound numbers are hyphenated
 #' @importFrom dplyr %>%
 #' @export as_word
-#' @importFrom english english
 
 as_word = function(x = NULL,
-                   sentencecase = F,
+                   sentence = F,
                    hyphenate = T) {
   x = as.character(english::english(as.numeric
                                     (x)))
-  if (sentencecase == T) {
+  if (sentence == T) {
     substr(x, 1, 1) <- toupper(substr(x, 1, 1))
   }
 
@@ -31,6 +30,67 @@ as_word = function(x = NULL,
 
   return(x)
 }
+
+#' simpl_frac
+#'
+#' Simplified fractions for presentation
+#' @param p a proportion
+#' @param sentence If true, the first letter is capitalised
+#' @param percent If true, true percent is pasted to the final value
+#' @param denom valid denominator values, a sequence
+#' @param round the number of digits to round summary percent to
+#' @export simpl_frac
+
+simpl_frac = function(p,
+                       sentence = F,
+                       percent = T,
+                       round = 1,
+                       denom = 1:20) {
+
+  odds = prob2odds(p)
+
+  res = data.frame(denom = denom)
+  res$num = p * denom
+  res$remain = round(abs(round(res$num,0) - res$num),2)
+  res$num = round(res$num,0)
+
+  # penalise harder fractions
+  res$remain = ifelse(res$remain %% 5 != 0 & res$denom > 10, res$remain + .025, res$remain)
+  res$remain = ifelse(res$num > 5, res$remain + .025, res$remain)
+
+  res = dplyr::filter(dplyr::arrange(res, remain, denom), num != 0 & remain < 0.3)
+  perc = round(p*100, round)
+
+  if(nrow(res) == 0){
+    simpl = hash_replace("few")
+  }else{
+
+    num = as_word(res$num[1])
+    denom = as_word(res$denom[1])
+
+    simpl = hash_replace("##num## in ##denom##")
+  }
+
+  if(p > .9){
+    simpl = "most"
+  }
+
+  if(p == 1){
+    simpl = "all"
+  }
+
+  if(sentence){
+    substr(simpl, 1, 1) <- toupper(substr(simpl, 1, 1))
+  }
+
+  if(percent){
+    simpl = hash_replace("##simpl## (##perc##%)")
+  }
+
+  return(simpl)
+
+}
+
 
 #' remove_lead
 #'

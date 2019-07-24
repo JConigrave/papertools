@@ -108,4 +108,5 @@ mm_table = function(model, round = 2, round_p = 3, fixed_names = NULL, simple_na
 }
 
 
-globalVariables(c(".","coef", "p","$\\beta$","SE","OR","rowname"))
+globalVariables(c(".","coef", "p","$\\beta$","SE","OR","rowname","95% CI","Estimate",
+                  "Pr...t..","Std..Error","X2.5..","X97.5..","b","lower","remain","upper"))
