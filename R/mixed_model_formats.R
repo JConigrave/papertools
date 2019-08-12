@@ -63,11 +63,9 @@ mm_table = function(model, round = 2, round_p = 3, fixed_names = NULL, simple_na
   re_vars$rowname[re_vars$type == 2] = sigma_name
   re_vars$rowname[re_vars$type == "tau.00"] = paste0(tau_name,
                                                     re_vars$rowname[re_vars$type == "tau.00"])
-  iccs = sjstats::icc(model) %>%
-    data.frame %>%
-    tibble::rownames_to_column() %>%
-    mutate(rowname = paste("ICC", rowname)) %>%
-    mutate(type = "ICC")
+  iccs = performance::icc(model)$ICC_adjusted
+  iccs = data.frame(rowname = "ICC","." = iccs, type = "ICC")
+
 
   random_effects = rbind(re_vars, iccs) %>%
     dplyr::select(Predictors = rowname, "$\\beta$" = ".") %>%

@@ -26,6 +26,7 @@ Imports:
     effects,
     stringr,
     insight,
-    glue
+    glue,
+    performance
 Remotes: 
     crsh/papaja
