@@ -5,7 +5,7 @@
 \title{to_docx}
 \usage{
 to_docx(table, path, title = NULL, note = NULL, landscape = F,
-  save_over = F)
+  save_over = F, ...)
 }
 \arguments{
 \item{table}{a dataframe or list of data.frames}
@@ -19,6 +19,8 @@ to_docx(table, path, title = NULL, note = NULL, landscape = F,
 \item{landscape}{a bool. If true, outputs a landscape word doc}
 
 \item{save_over}{a bool. If true, to_docx will save over files with same path}
+
+\item{...}{additional arguements passed to apa_table}
 }
 \description{
 Sends a data.frame to a word doc.

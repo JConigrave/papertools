@@ -23,7 +23,7 @@ run_if_change = function(code = NULL,
                          compare = NULL,
                          #the comparator object to test update required
                          path = NULL,
-                         force = F) {
+                         run = "auto") {
   comparison_command = substitute(compare)
   comparison_string = as.character(comparison_command)
   code_to_run = substitute(code)

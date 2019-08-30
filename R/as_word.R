@@ -209,3 +209,32 @@ hash_replace = function(string,sample = NULL, envir = parent.frame()){
   }
   return(string)
 }
+
+#' brief
+#'
+#' Summarises text based on desired number of sentences
+#' @param x character including all text
+#' @param n number of sentences desired
+#' @export brief
+
+brief = function(x,n){
+
+  top = lexRankr::lexRank(x,n)
+  order_of_appearance = order(as.integer(gsub("_","",top$sentenceId)))
+  ordered_top = top[order_of_appearance, "sentence"]
+  return(cat(paste(ordered_top, collapse = "\n")))
+
+}
+
+#' c_sentence
+#'
+#' concatenates words with commas. Replaces the last comma with an and.
+#' @param x a vector
+#' @param and a character string. The joining word
+#' @export c_sentence
+
+c_sentence = function(x, and = "and"){
+  last = x[length(x)]
+  first = paste0(x[-length(x)], collapse = ", ")
+  return(paste0(first, ", ",and," ", last))
+}

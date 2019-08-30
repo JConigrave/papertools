@@ -5,7 +5,7 @@
 \title{return_if_identical}
 \usage{
 run_if_change(code = NULL, object.names = NULL, compare = NULL,
-  path = NULL, force = F)
+  path = NULL, run = "auto")
 }
 \arguments{
 \item{code}{a code chunk wrapped in\ \{\}}

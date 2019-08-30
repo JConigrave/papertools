@@ -39,6 +39,7 @@ if(landscape){
 #'@param note a string. Allows for notes
 #'@param landscape a bool. If true, outputs a landscape word doc
 #'@param save_over a bool. If true, to_docx will save over files with same path
+#'@param ... additional arguements passed to apa_table
 #'@importFrom papaja apa_table
 #'@export to_docx
 
@@ -48,7 +49,8 @@ to_docx = function(table,
                    title = NULL,
                    note = NULL,
                    landscape = F,
-                   save_over = F) {
+                   save_over = F,
+                   ...) {
   if (tools::file_ext(path) != "docx") {
     #if path isn't to .docx, it is now.
     path <- paste0(path, ".docx")
@@ -183,4 +185,5 @@ prevent_duplicates = function(path){
   }
   return(paste0(folder,"/",filename,".",ext)) #return the filename with the folder address pasted to it.
 }
+
 

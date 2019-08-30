@@ -27,6 +27,7 @@ Imports:
     stringr,
     insight,
     glue,
-    performance
+    performance,
+    lexRankr
 Remotes: 
     crsh/papaja

@@ -34,7 +34,8 @@ for (i in seq_along(table)) {
       caption = title[i],
       stub_indents = stub_indents ,
       note = note[i],
-      escape = F
+      escape = F,
+      ...
     )
   )
   
