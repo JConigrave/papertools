@@ -34,25 +34,44 @@ mm_fe = function(model){
 mm_re = function(model, simple_names = T){
 
   var_summary = insight::get_variance(model)
-  taus = var_summary$var.intercept %>%
+  tau_const = var_summary$var.intercept %>%
     data.frame() %>%
     tibble::rownames_to_column() %>%
     dplyr::mutate(type = "tau.00")
-  re_vars = tibble::tibble(rowname = "_sigma", . = var_summary$var.residual, type = "2" ) %>%
-    rbind(.,taus)
+
+  tau_slope = var_summary$var.slope %>%
+    data.frame() %>%
+    tibble::rownames_to_column() %>%
+    dplyr::mutate(type = "tau.11")
+
+  cor.slope_int = var_summary$cor.slope_intercept %>%
+    data.frame() %>%
+    tibble::rownames_to_column() %>%
+    dplyr::mutate(type = "p.01")
+
+  re_vars = tibble::tibble(rowname = "_sigma", . = var_summary$var.residual, type = "2" )
+
+  re_vars = dplyr::bind_rows(re_vars, tau_const, tau_slope, cor.slope_int)
 
   if(!simple_names){
     sigma_name = "$\\sigma^2$"
     tau_name = "$\\tau_{00}$ "
+    tau_s_name = "$\\tau_{11}$ "
+    p_name = "$\\rho_{01}$ "
   }else{
     sigma_name = "sigma2"
-    tau_name = "tau_"
-
+    tau_name = "tau_00 "
+    tau_s_name = "tau_11 "
+    p_name = "rho_01 "
   }
 
   re_vars$rowname[re_vars$type == 2] = sigma_name
   re_vars$rowname[re_vars$type == "tau.00"] = paste0(tau_name,
                                                      re_vars$rowname[re_vars$type == "tau.00"])
+  re_vars$rowname[re_vars$type == "tau.11"] = paste0(tau_s_name,
+                                                     re_vars$rowname[re_vars$type == "tau.11"])
+  re_vars$rowname[re_vars$type == "p.01"] = paste0(p_name,
+                                                     re_vars$rowname[re_vars$type == "p.01"])
   iccs = performance::icc(model)$ICC_adjusted
   iccs = data.frame(rowname = "ICC","." = iccs, type = "ICC")
 
