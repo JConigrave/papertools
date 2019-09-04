@@ -1,6 +1,7 @@
 #' mm_fe
 #'
 #' Produces fixed effect tables for lme4 objects
+#'
 #' @param model a lme4 object
 #' @importFrom dplyr %>%
 #' @export mm_fe
@@ -28,6 +29,7 @@ mm_fe = function(model){
 #'
 #' Produces random effect table for lme4 objects
 #' @param model a lme4 object
+#' @param simple_names If true, latex commands are stipped
 #' @importFrom dplyr %>%
 #' @export mm_re
 
@@ -88,23 +90,24 @@ mm_re = function(model, simple_names = T){
 
 #' mm_table
 #'
-#' Creates a table of fixed and random effects.
+#' Creates a table of fixed and random effects
+#'
 #' @param model a model of glmerMod
 #' @param transf function to transform estimates
-#' @param transf_name string, used to rename 95% CI column
+#' @param transf_name string, used to rename 95\% CI column
 #' @param fixed_names a vector of predictor names
 #' @param round a scalar, defaults to 2
 #' @param round_p a scalar. The number of digits to round p to.
 #' @param simple_names a bool. If True, simple names are given
 #' @param collapse a string. Value to separate confidence intervals with
 #' @param brackets a vector. passed to glue, bracket.
-#' @export mm_table
 #' @importFrom dplyr %>% left_join bind_rows
 #' @importFrom papaja apa_table
 #' @importFrom tibble rownames_to_column
 #' @importFrom purrr modify_if
+#' @export mm_table
 
-#round = 2; round_p = 3; fixed_names = NULL; simple_names = F; collapse = " - "; brackets = c("(",")")
+#round = 2; round_p = 3; fixed_names = NULL; simple_names = F; collapse = " - "; brackets = c("(",")"); transf = NULL, transf_name = NULL
 
 mm_table = function(model,
                     transf = NULL,
@@ -112,6 +115,7 @@ mm_table = function(model,
                     round = 2,
                     round_p = 3,
                     fixed_names = NULL,
+                    #random_names = NULL,
                     simple_names = F,
                     collapse = " - ",
                     brackets = c("(", ")")) {
@@ -182,4 +186,4 @@ mm_table = function(model,
 
 
 globalVariables(c(".","coef", "p","$\\beta$","SE","OR","rowname","95% CI","Estimate",
-                  "Pr...t..","Pr...z..","Std..Error","X2.5..","X97.5..","b","lower","remain","upper"))
+                  "Pr...t..","Pr...z..","Std..Error","X2.5..","X97.5..","b","lower","remain","upper", "Effect","est"))

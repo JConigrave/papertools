@@ -8,6 +8,8 @@ mm_re(model, simple_names = T)
 }
 \arguments{
 \item{model}{a lme4 object}
+
+\item{simple_names}{If true, latex commands are stipped}
 }
 \description{
 Produces random effect table for lme4 objects

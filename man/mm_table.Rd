@@ -13,7 +13,7 @@ mm_table(model, transf = NULL, transf_name = NULL, round = 2,
 
 \item{transf}{function to transform estimates}
 
-\item{transf_name}{string, used to rename 95% CI column}
+\item{transf_name}{string, used to rename 95\% CI column}
 
 \item{round}{a scalar, defaults to 2}
 
@@ -28,5 +28,5 @@ mm_table(model, transf = NULL, transf_name = NULL, round = 2,
 \item{brackets}{a vector. passed to glue, bracket.}
 }
 \description{
-Creates a table of fixed and random effects.
+Creates a table of fixed and random effects
 }

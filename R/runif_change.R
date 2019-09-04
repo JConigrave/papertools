@@ -5,14 +5,14 @@ get_objects = function(code){
     as.character()
 }
 
-#' return_if_identical
+#' run_if_change
 #'
 #'Takes in R commands and the path to a location to store temporary files. The function will create the file if it doesn't already exist, store the objects there, and only re-run if there has been a change to a reference object.
 #' @param code a code chunk wrapped in\ \{\}
 #' @param object.names a character vector. The names to be saved and loaded
 #' @param compare an object. The object which if changed, will cause the code to run.
 #' @param path a string. The path to the tempory file to be used. Must end in '.rData'
-#' @param force a bool. If True, the analyses will be re-run even if the comparitor is identical.
+#' @param run a bool. If True, the analyses will be re-run even if the comparitor is identical.
 #' @details Runs analyses and then caches them. Analyses are returned in a list.
 #' @export run_if_change
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/runif_change.R
 \name{run_if_change}
 \alias{run_if_change}
-\title{return_if_identical}
+\title{run_if_change}
 \usage{
 run_if_change(code = NULL, object.names = NULL, compare = NULL,
   path = NULL, run = "auto")
@@ -16,7 +16,7 @@ run_if_change(code = NULL, object.names = NULL, compare = NULL,
 
 \item{path}{a string. The path to the tempory file to be used. Must end in '.rData'}
 
-\item{force}{a bool. If True, the analyses will be re-run even if the comparitor is identical.}
+\item{run}{a bool. If True, the analyses will be re-run even if the comparitor is identical.}
 }
 \description{
 Takes in R commands and the path to a location to store temporary files. The function will create the file if it doesn't already exist, store the objects there, and only re-run if there has been a change to a reference object.
