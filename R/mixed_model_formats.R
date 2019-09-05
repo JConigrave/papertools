@@ -74,11 +74,11 @@ mm_re = function(model, simple_names = T){
                                                      re_vars$rowname[re_vars$type == "tau.11"])
   re_vars$rowname[re_vars$type == "p.01"] = paste0(p_name,
                                                      re_vars$rowname[re_vars$type == "p.01"])
-  iccs = performance::icc(model)$ICC_adjusted
-  iccs = data.frame(rowname = "ICC","." = iccs, type = "ICC")
+  #iccs = performance::icc(model)$ICC_adjusted
+  #iccs = data.frame(rowname = "ICC","." = iccs, type = "ICC")
 
 
-  random_effects = rbind(re_vars, iccs) %>%
+  random_effects = re_vars %>%
     dplyr::select(Effect = rowname, est = ".")
   # %>%
   #   dplyr::select(Predictors = rowname, "$\\beta$" = ".") %>%
