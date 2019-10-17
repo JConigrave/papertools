@@ -5,7 +5,7 @@
 \title{to_docx}
 \usage{
 to_docx(table, path, title = NULL, note = NULL, landscape = F,
-  save_over = F, ...)
+  save_over = T, ...)
 }
 \arguments{
 \item{table}{a dataframe or list of data.frames}

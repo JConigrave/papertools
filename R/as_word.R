@@ -238,3 +238,16 @@ c_sentence = function(x, and = "and"){
   first = paste0(x[-length(x)], collapse = ", ")
   return(paste0(first, ", ",and," ", last))
 }
+
+#' clippy
+#'
+#' sends a table to the clipboard so it can be pasted into excel - a wrapper for write.table
+#' @param x the data.frame
+#' @param row.names a bool. TRUE preserves rownames
+#' @export clippy
+
+clippy = function(x, row.names = F){
+  utils::write.table(x , "clipboard", sep = "\t", quote = FALSE, qmethod = "double", row.names = row.names)
+}
+
+

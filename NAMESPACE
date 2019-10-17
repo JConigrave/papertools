@@ -3,6 +3,7 @@
 export(as_word)
 export(brief)
 export(c_sentence)
+export(clippy)
 export(digits)
 export(glue_bracket)
 export(hash_replace)

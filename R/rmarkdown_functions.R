@@ -49,7 +49,7 @@ to_docx = function(table,
                    title = NULL,
                    note = NULL,
                    landscape = F,
-                   save_over = F,
+                   save_over = T,
                    ...) {
   if (tools::file_ext(path) != "docx") {
     #if path isn't to .docx, it is now.

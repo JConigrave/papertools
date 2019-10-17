@@ -4,12 +4,14 @@
 \alias{mm_re}
 \title{mm_re}
 \usage{
-mm_re(model, simple_names = T)
+mm_re(model, simple_names = T, sigma = F)
 }
 \arguments{
 \item{model}{a lme4 object}
 
 \item{simple_names}{If true, latex commands are stipped}
+
+\item{sigma}{a Bool. If true, residual variance is included}
 }
 \description{
 Produces random effect table for lme4 objects
