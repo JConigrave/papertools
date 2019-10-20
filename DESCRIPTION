@@ -28,6 +28,12 @@ Imports:
     insight,
     glue,
     performance,
-    lexRankr
+    lexRankr,
+    RColorBrewer,
+    ggtree,
+    gglayer,
+    reshape2,
+    tidyselect,
+    gganimate,
 Remotes: 
     crsh/papaja

@@ -86,7 +86,7 @@ mm_re = function(model, simple_names = T, sigma = F){
 
   if(!sigma){ #if not sigma, suppress.
     re_vars = re_vars %>%
-      filter(type != "sigma2")
+      dplyr::filter(type != "sigma2")
   }
 
   random_effects = re_vars %>%

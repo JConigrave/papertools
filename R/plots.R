@@ -56,3 +56,67 @@ pie_chart =  function(vector, colours = NULL) {
 }
 
 globalVariables(c("Freq","Percent"))
+
+#' raincloud
+#'
+#' @param data data
+#' @param ... variables
+#' @param transition variable to transition over
+#' @export raincloud
+#' @importFrom ggplot2 resolution
+
+raincloud = function(data, ..., palette = "Spectral", transition = NULL){
+
+  vars = tidyselect::vars_select(names(data), ...)
+  trans = trans_name = tidyselect::vars_select(names(data), {{transition}})
+
+  require(ggplot2)
+
+  vars = c(vars, trans)
+
+  data = data[, names(data) %in% vars]
+
+  if(length(trans) > 0){
+  dat = suppressMessages(reshape2::melt(data, id = trans))
+  names(dat)[1] = "trans"
+
+  n_trans = length(unique(dat$trans))
+  if(n_trans < 20) trans = 20
+  if(n_trans > 50) trans = 50
+  #message(n_trans)
+
+  }else{
+  dat =  suppressMessages(reshape2::melt(data))
+  }
+
+  if(dim(dat)[2] == 1){
+    dat$variable = vars
+  }
+
+  #return(dat)
+
+  dat$variable = factor(dat$variable)
+
+p = ggplot2::ggplot(data = dat, ggplot2::aes(y = value, x = variable, fill = variable)) +
+    gglayer::geom_flat_violin(position = ggplot2::position_nudge(x = .2, y = 0), alpha = .8, trim=FALSE) +
+    ggplot2::geom_point(ggplot2::aes(y = value, color = variable), position = ggplot2::position_jitter(width = .15), size = .5, alpha = 0.8) +
+    ggplot2::geom_boxplot(width = .1,  outlier.shape = NA, alpha = 0.5) +
+    # +
+    ggplot2::guides(fill = FALSE) +
+    ggplot2::guides(color = FALSE) +
+    ggplot2::scale_color_brewer(palette = palette) +
+    ggplot2::scale_fill_brewer(palette = palette) +
+    ggplot2::coord_flip() +
+    ggplot2::theme_bw() +
+    ggplot2::labs(y = "", x ="")
+
+ if(length(trans) > 0){
+   p = p + gganimate::transition_states(trans, transition_length = 10, state_length = 3) +
+     labs(title = hash_replace("'##trans_name##' : {closest_state}"))
+ }
+
+return(p)
+
+}
+
+globalVariables(c("value","type","variable"))
