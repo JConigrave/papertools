@@ -199,13 +199,16 @@ n_percent = function(vector, x, round = 2, na.rm=F){
 hash_replace = function(string,sample = NULL, envir = parent.frame()){
   while(grepl(".*##(.+)##.*",string)){
     hash = gsub(".*##(.+)##.*", "\\1", string)
-    replace = eval(parse(text = hash), envir = envir)
+    replace = as.character(eval(parse(text = hash), envir = envir))
 
     if(!is.null(sample)) {
       replace = sample(replace, sample)
     }
 
-    string = gsub(paste0("##",hash,"##"),replace,string)
+    to_replace = paste0("##",hash,"##")
+    to_replace = gsub("([.|()\\^{}+$*?]|\\[|\\])", "\\\\\\1", to_replace) # escape regex
+
+    string = gsub(to_replace,replace,string)
   }
   return(string)
 }

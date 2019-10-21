@@ -63,14 +63,13 @@ globalVariables(c("Freq","Percent"))
 #' @param ... variables
 #' @param transition variable to transition over
 #' @export raincloud
-#' @importFrom ggplot2 resolution
 
 raincloud = function(data, ..., palette = "Spectral", transition = NULL){
 
   vars = tidyselect::vars_select(names(data), ...)
   trans = trans_name = tidyselect::vars_select(names(data), {{transition}})
 
-  require(ggplot2)
+  require("ggplot2", quietly = TRUE)
 
   vars = c(vars, trans)
 
