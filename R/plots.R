@@ -62,14 +62,13 @@ globalVariables(c("Freq","Percent"))
 #' @param data data
 #' @param ... variables
 #' @param transition variable to transition over
+#' @param palette String of palette defining ggplot2 colours
 #' @export raincloud
 
 raincloud = function(data, ..., palette = "Spectral", transition = NULL){
 
   vars = tidyselect::vars_select(names(data), ...)
   trans = trans_name = tidyselect::vars_select(names(data), {{transition}})
-
-  require("ggplot2", quietly = TRUE)
 
   vars = c(vars, trans)
 

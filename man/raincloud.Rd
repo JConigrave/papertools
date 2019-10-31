@@ -11,6 +11,8 @@ raincloud(data, ..., palette = "Spectral", transition = NULL)
 
 \item{...}{variables}
 
+\item{palette}{String of palette defining ggplot2 colours}
+
 \item{transition}{variable to transition over}
 }
 \description{
