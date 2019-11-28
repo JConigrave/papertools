@@ -4,8 +4,13 @@
 \alias{run_if_change}
 \title{run_if_change}
 \usage{
-run_if_change(code = NULL, object.names = NULL, compare = NULL,
-  path = NULL, run = "auto")
+run_if_change(
+  code = NULL,
+  object.names = NULL,
+  compare = NULL,
+  path = NULL,
+  run = "auto"
+)
 }
 \arguments{
 \item{code}{a code chunk wrapped in\ \{\}}

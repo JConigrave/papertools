@@ -13,8 +13,6 @@ digits = function(x, n = 2) {
   return(x)
 }
 
-
-
 #' glue_bracket
 #'
 #' @param x a character or numeric

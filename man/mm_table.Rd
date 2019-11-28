@@ -4,9 +4,17 @@
 \alias{mm_table}
 \title{mm_table}
 \usage{
-mm_table(model, transf = NULL, transf_name = NULL, round = 2,
-  round_p = 3, fixed_names = NULL, simple_names = F,
-  collapse = " - ", brackets = c("(", ")"))
+mm_table(
+  model,
+  transf = NULL,
+  transf_name = NULL,
+  round = 2,
+  round_p = 3,
+  fixed_names = NULL,
+  simple_names = F,
+  collapse = " - ",
+  brackets = c("(", ")")
+)
 }
 \arguments{
 \item{model}{a model of glmerMod}

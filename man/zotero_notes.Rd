@@ -4,8 +4,12 @@
 \alias{zotero_notes}
 \title{zotero_notes}
 \usage{
-zotero_notes(csv, path, title = "Zotero notes",
-  date = format(Sys.time(), "\%d \%B, \%Y"))
+zotero_notes(
+  csv,
+  path,
+  title = "Zotero notes",
+  date = format(Sys.time(), "\%d \%B, \%Y")
+)
 }
 \arguments{
 \item{csv}{an exported csv from zotero. Study type stored in the extra field}

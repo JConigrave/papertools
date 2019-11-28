@@ -4,16 +4,16 @@
 \alias{n_percent}
 \title{n_percent}
 \usage{
-n_percent(vector, x, round = 2, na.rm = F)
+n_percent(logical, round = 2, na.rm = F, pattern = "{n} ({p}\%)")
 }
 \arguments{
-\item{vector}{a vector to count within}
-
-\item{x}{character, the object to count by}
+\item{logical}{a logical vector to count}
 
 \item{round}{scalar, the number of digits}
 
 \item{na.rm}{bool, whether to remove NAs}
+
+\item{pattern}{a character string using glue syntax. Variable names are 'n' and 'p'.}
 }
 \value{
 a character

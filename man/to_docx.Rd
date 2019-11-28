@@ -4,8 +4,15 @@
 \alias{to_docx}
 \title{to_docx}
 \usage{
-to_docx(table, path, title = NULL, note = NULL, landscape = F,
-  save_over = T, ...)
+to_docx(
+  table,
+  path,
+  title = NULL,
+  note = NULL,
+  landscape = F,
+  save_over = T,
+  ...
+)
 }
 \arguments{
 \item{table}{a dataframe or list of data.frames}

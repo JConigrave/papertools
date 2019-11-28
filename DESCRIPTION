@@ -1,6 +1,7 @@
 Package: papertools
 Type: Package
 Title: Useful Tools For Writing Papers in Rmarkdown
+Date: 2019-11-26
 Version: 0.6.1
 Author: James Conigrave
 Maintainer: James Conigrave <jamesconigrave@gmail.com>
@@ -8,7 +9,7 @@ Description: These tools will help cache computationally expensive analysis, and
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1
 Imports:
     english (>= 1.1-4),
     psych (>= 1.8.10),
@@ -30,10 +31,10 @@ Imports:
     performance,
     lexRankr,
     RColorBrewer,
-    ggtree,
-    gglayer,
     reshape2,
     tidyselect,
-    gganimate,
+    gganimate
 Remotes: 
     crsh/papaja
+    YuLab-SMU/ggtree,
+    GuangchuangYu/gglayer
