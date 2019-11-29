@@ -173,7 +173,6 @@ multi_grepl_n = function(pattern, x, tolower = T) {
 #' @export n_percent
 
 n_percent = function(logical, round = 2, na.rm=F, pattern = "{n} ({p}%)"){
-
   if(na.rm){
     vector = na.omit(vector)
   }
