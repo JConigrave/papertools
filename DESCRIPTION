@@ -35,6 +35,6 @@ Imports:
     tidyselect,
     gganimate
 Remotes: 
-    crsh/papaja
+    crsh/papaja,
     YuLab-SMU/ggtree,
     GuangchuangYu/gglayer
