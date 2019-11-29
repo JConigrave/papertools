@@ -176,7 +176,6 @@ n_percent = function(logical, round = 2, na.rm=F, pattern = "{n} ({p}%)"){
   if(na.rm){
     vector = na.omit(vector)
   }
-
   n = sum(logical)
   total_length = length(logical)
   p = (n / total_length) %>%
