@@ -181,7 +181,6 @@ n_percent = function(logical, round = 2, na.rm=F, pattern = "{n} ({p}%)"){
   p = (n / total_length) %>%
     "*"(100) %>%
     digits(round)
-
   out = glue::glue(pattern)
 
   return(out)
