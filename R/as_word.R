@@ -172,9 +172,9 @@ multi_grepl_n = function(pattern, x, tolower = T) {
 #' @return a character
 #' @export n_percent
 
-n_percent = function(logical, round = 2, na.rm=F, pattern = "{n} ({p}%)"){
+n_percent = function(logical, round = 2, na.rm = T, pattern = "{n} ({p}%)"){
   if(na.rm){
-    vector = na.omit(vector)
+    logical = na.omit(logical)
   }
   n = sum(logical)
   total_length = length(logical)
