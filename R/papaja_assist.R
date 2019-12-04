@@ -6,7 +6,7 @@
 #' @param italics should row headers be italicized?
 #' @export to_rowhead
 
-to_rowhead = function(data, x, italics = T) {
+to_rowhead = function(data, x, italics = FALSE) {
   x = tidyselect::vars_select(colnames(data), {{x}})
   row_head = as.character(unlist(data[, x]))
   new_data = data[, !names(data) %in% x]
