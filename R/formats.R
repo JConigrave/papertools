@@ -106,7 +106,7 @@ m_iqr = function(x,round = 1,quantiles = F,na.rm =T, in.brack = F){
 #' @param stars a numeric vector, add a star every time p is less than a respective star
 #' @param leading.zero a bool. If FALSE, leading zeros will be removed
 #' @export round_p
-round_p =  function(p, n = 2, stars = c(), leading.zero = T){
+round_p =  function(p, n = 3, stars = c(), leading.zero = T){
   rounded = digits(p,n)
   lapply(seq_along(rounded), function(x){
 
